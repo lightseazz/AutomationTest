@@ -46,14 +46,13 @@ docker run -d -p 4442-4444:4442-4444 --net grid --name selenium-hub selenium/hub
 docker run -d  -p 7900:7900  --net grid  -e SE_EVENT_BUS_HOST=selenium-hub     --shm-size="2g" -e SE_NODE_PORT=9998    -e SE_EVENT_BUS_PUBLISH_PORT=4442     -e SE_EVENT_BUS_SUBSCRIBE_PORT=4443 -e SE_NODE_MAX_SESSIONS=4 -e SE_NODE_OVERRIDE_MAX_SESSIONS=true     selenium/node-firefox:latest
 ```
 
-- Để tạo nhiều Node trên 1 máy tính, điều chỉnh tham số```-p 7900:7900``` sang 1 port khác như ```-p 7800:7800```.
-- Port của Node mặc định là 5555, để thay đổi Port dùng param ```SE_NODE_PORT``` 
+- Để xem live preview VNC của Node , Expose port ```-p 7900:7900``` (port trước ':' là port expose ra máy tính, port sau ':' là port của VNC trong Node),Truy cập đến  http://localhost:7900/  để xem VNC của Node, nếu dùng nhiều Node trên một máy tính thì chỉnh port trước ví dụ ```-p 7800:7900``` 
 - Mặc định Max Sessions của Node là 1 , để tăng Max Sessions chỉnh số lượng param ```SE_NODE_MAX_SESSIONS``` và chỉnh param ```SE_NODE_OVERRIDE_MAX_SESSIONS``` là ```true```
 - Các param về Node có thể đọc thêm ở đây: https://github.com/SeleniumHQ/docker-selenium/blob/trunk/README.md#node-configuration-options
 
 # Kết quả
 
-- Chạy Hub và chạy 2 Node Firefox tương ứng với 2 port container 7900 và 7800, khi đến http://localhost:4444/ ra giao diện: 
+- Chạy Hub và chạy 2 Node Firefox 2 tham số ```-p 7900:7900``` và ```-p 7800:7900``` , khi đến http://localhost:4444/ ra giao diện: 
 
 ![Overview](overview.png)
 
